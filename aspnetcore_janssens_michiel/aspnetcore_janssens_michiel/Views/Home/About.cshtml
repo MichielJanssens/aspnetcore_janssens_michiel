@@ -1,7 +1,9 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
+
+@model AboutModel
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>Hallo @Model.Name, Nog maar @Model.DaysUntilBirthday dagen tot je verjaardag</p>

@@ -1,0 +1,16 @@
+﻿@model DictionaryModel
+
+@{
+    ViewData["Title"] = "Overzicht Boeken";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ul>
+            @foreach (KeyValuePair<int, BookDetailModel> book in Model.Books)
+            {
+                <li><a href="books/@book.Key">@book.Value.Title</a></li>
+            }
+        </ul>
+    </div>
+</div>

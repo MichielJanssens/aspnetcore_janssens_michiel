@@ -18,8 +18,14 @@ namespace aspnetcore_janssens_michiel.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
+            var model = new AboutModel()
+            {
+                Name = "Michiel",
+                DaysUntilBirthday = (new DateTime(2018, 05, 05) - DateTime.Now).TotalDays
+            };
 
-            return View();
+
+            return View(model);
         }
 
         public IActionResult Contact()
