@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using aspnetcore_janssens_michiel.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace aspnetcore_janssens_michiel
 {
@@ -21,11 +23,12 @@ namespace aspnetcore_janssens_michiel
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<EntityContext>(options => options.UseSqlite("Filename=./books.db"));
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, EntityContext entityContext)
         {
             if (env.IsDevelopment())
             {
@@ -38,6 +41,7 @@ namespace aspnetcore_janssens_michiel
             }
 
             app.UseStaticFiles();
+            DatabaseInitializer.InitializeDatabase(entityContext);
 
             app.UseMvc(routes =>
             {
