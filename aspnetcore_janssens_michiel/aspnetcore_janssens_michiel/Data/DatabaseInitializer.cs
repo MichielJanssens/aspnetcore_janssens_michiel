@@ -47,7 +47,7 @@ namespace aspnetcore_janssens_michiel.Data
                 {
                     genre = genres[2];
                 }
-                books.Add(new Book { Title = $"Book {i}", Authors = new List<AuthorBook> { authorBook }, Genre = genre });
+                books.Add(new Book { Title = $"Book {i}", Authors = new List<AuthorBook> { authorBook }, Genre = genre, CreationDate = DateTime.Now});
             }
 
             var me = new Author { FirstName = "Raf", LastName = "Ceuls" };
