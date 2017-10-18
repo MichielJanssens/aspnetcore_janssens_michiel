@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using System;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -44,7 +45,16 @@ namespace aspnetcore_janssens_michiel.Controllers
                 .FirstOrDefault(x => x.Id == id);
             if (book == null)
             {
-                return NotFound();
+                var vm2 = new BookDetailViewModel
+                {
+                    Id = 0,
+                    Title = "",
+                    CreationDate = DateTime.Now,
+                    Author = "",
+                    Genre = "",
+                    GenreId = 0
+                };
+                return View(vm2);
             }
 
             var vm = ConvertBook(book);
